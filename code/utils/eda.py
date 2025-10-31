@@ -10,9 +10,6 @@ import matplotlib.pyplot as plt
 from scipy import stats
 import seaborn as sns
 
-# 로컬 모듈
-from .config import growth_map
-
 
 def eda_missing_data(data: pd.DataFrame, ext: str = 'ipynb') -> None:
     """결측치 탐색 함수
@@ -35,7 +32,7 @@ def eda_missing_data(data: pd.DataFrame, ext: str = 'ipynb') -> None:
     print(data.isnull().sum())
 
 
-def eda_duplicates(data: pd.DataFrame, columns: List[str], ext: str = 'ipynb') -> None:
+def eda_duplicates(data: pd.DataFrame, columns: List[str], map: dict, ext: str = 'ipynb') -> None:
     # 만약, jupyter notebook에서 코드를 실행한다면, display로 출력
     if ext == 'ipynb':
         print = display
@@ -51,7 +48,7 @@ def eda_duplicates(data: pd.DataFrame, columns: List[str], ext: str = 'ipynb') -
         
         for cols in combinations(columns, i+1):
             # print('-'*30)
-            print(f'{"와 ".join([growth_map[col] for col in cols])}의 PK 검사')
+            print(f'{"와 ".join([map[col] for col in cols])}의 PK 검사')
             # print('-'*30)
             print(data.duplicated(subset=cols).value_counts())
             
