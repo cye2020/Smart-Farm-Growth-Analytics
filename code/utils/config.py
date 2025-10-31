@@ -21,3 +21,18 @@ growth_map = {
     "hvstGrupp": "수확중 화방수준(점)",
     "frtstCo": "열매수(개)"
 }
+
+energy_map = {
+    "measDate": "측정일",
+    "farm_cde": "온실번호",
+    "water_usage": "물사용량(L)",
+    "water_cost": "물사용비용(원)",
+    "fertilizer_usage": "비료사용량(L)",
+    "fertilizer_cost": "비료사용비용(원)",
+    "heating_energy_usage": "난방에너지사용량(kcal)",
+    "heating_energy_cost": "난방에너지사용비용(원)",
+    "CO2_usage": "CO₂사용량(L)",
+    "CO2_cost": "CO₂사용비용(원)",
+    "mist_usage_time": "미스트사용시간(분)",
+    "mist_cost": "미스트사용비용(원)"
+}
