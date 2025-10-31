@@ -1,4 +1,4 @@
-from .config import PROJECT_DIR, CODE_DIR, DATA_DIR, MODEL_DIR, \
+from .utils import PROJECT_DIR, CODE_DIR, DATA_DIR, MODEL_DIR, \
     growth_map
 
 
