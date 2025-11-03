@@ -32,7 +32,7 @@ def eda_missing_data(data: pd.DataFrame, ext: str = 'ipynb') -> None:
     print(data.isnull().sum())
 
 
-def eda_duplicates(data: pd.DataFrame, columns: List[str], map: dict, ext: str = 'ipynb') -> None:
+def eda_duplicates(data: pd.DataFrame, columns: List[str], map: dict = None, ext: str = 'ipynb') -> None:
     # 만약, jupyter notebook에서 코드를 실행한다면, display로 출력
     if ext == 'ipynb':
         print = display
@@ -46,13 +46,19 @@ def eda_duplicates(data: pd.DataFrame, columns: List[str], map: dict, ext: str =
         print(f'컬럼 {i+1}개 PK 검사')
         print('='*50)
         
-        for cols in combinations(columns, i+1):
-            # print('-'*30)
-            print(f'{"와 ".join([map[col] for col in cols])}의 PK 검사')
-            # print('-'*30)
-            print(data.duplicated(subset=cols).value_counts())
-            
-
+        if map:
+            for cols in combinations(columns, i+1):
+                # print('-'*30)
+                print(f'{"와 ".join([map[col] for col in cols])}의 PK 검사')
+                # print('-'*30)
+                print(data.duplicated(subset=cols).value_counts())
+        else:
+            for cols in combinations(columns, i+1):
+                # print('-'*30)
+                print(f'{"와 ".join(col for col in cols)}의 PK 검사')
+                # print('-'*30)
+                print(data.duplicated(subset=cols).value_counts())
+        
 def plot_one_feature(data: pd.DataFrame, feature, color, axes):
     sns.boxplot(data, y=feature, color=color, ax=axes[0])
     axes[0].set_title('Box Plot')
