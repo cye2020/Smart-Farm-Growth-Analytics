@@ -13,71 +13,6 @@ from scipy.stats import shapiro, ttest_ind
 from scipy.stats import mannwhitneyu
 
 
-
-def check_normality_simple(data: ArrayLike, col="데이터"):
-    """
-    데이터의 정규성을 검정하는 함수: t-test용
-
-    Parameters
-    ----------
-    data : array-like
-        정규성을 검정할 데이터 (NaN은 자동 제거)
-    name : str, default="데이터"
-        출력 시 표시될 데이터 이름
-
-    Returns
-    -------
-    bool
-        정규분포 가정 충족 여부
-        - True: 정규분포 가정 가능 (모수 검정)
-        - False: 정규분포 가정 위반 (비모수 검정)
-
-    검정 기준
-    ---------
-    - n < 30: Shapiro-Wilk 검정 (p > 0.05)
-    - 30 ≤ n < 100: 왜도/첨도 우선, 필요시 Shapiro-Wilk
-    - n ≥ 100: 왜도 기준 (|왜도| < 2, 중심극한정리)
-    """
-    # NaN 체크
-    if pd.isna(data).any():
-        print(f"⚠️ 경고: {col}에 NaN 값이 {pd.isna(data).sum()}개 포함됨")
-        data = data.dropna()
-        print(f"   → NaN 제거 후 n={len(data)}")
-
-    n = len(data)
-
-    print(f"\n[{col} 정규성 검정] n={n}")
-    print("-"*40)
-
-    # 왜도와 첨도
-    skew = stats.skew(data)
-    kurt = stats.kurtosis(data, fisher=True)
-    print(f"왜도(Skewness): {skew:.3f}")
-    print(f"첨도(Kurtosis): {kurt:.3f}")
-
-    # 표본 크기에 따른 판단
-    if n < 30:
-        stat, p = shapiro(data)
-        print(f"Shapiro-Wilk p-value: {p:.4f}")
-        is_normal = p > 0.05
-        reason = f"Shapiro p={'>' if is_normal else '≤'}0.05"
-    elif n < 100:
-        if abs(skew) < 1 and abs(kurt) < 2:
-            is_normal = True
-            reason = "|왜도|<1, |첨도|<2"
-        else:
-            stat, p = shapiro(data)
-            print(f"추가 Shapiro-Wilk p-value: {p:.4f}")
-            is_normal = p > 0.05
-            reason = f"Shapiro p={'>' if is_normal else '≤'}0.05"
-    else:
-        is_normal = abs(skew) < 2
-        reason = f"|왜도|{'<' if is_normal else '≥'}2 (중심극한정리)"
-
-    print(f"결과: {'✅ 정규분포 가정 충족' if is_normal else '❌ 정규분포 가정 위반'} ({reason})")
-    return is_normal
-
-
 @dataclass
 class TestResult:
     test_name: str
@@ -117,7 +52,7 @@ class TTest(StatisticalTest):
     def __init__(self):
         pass
     
-    def execute(self, data: pd.DataFrame, iv_col: str, dv_col: str, is_normal_iv: bool = None, is_normal_dv: bool = None, alpha: float = 0.5, equal_var=True):
+    def execute(self, data: pd.DataFrame, iv_col: str, dv_col: str, alpha: float = 0.5, equal_var=True):
         """
         두 그룹 간 평균 차이에 대한 가설검정을 수행하는 함수.
         (정규성에 따라 t-검정 또는 Mann-Whitney U 검정을 자동 선택)
@@ -153,6 +88,9 @@ class TTest(StatisticalTest):
         
         iv_data = data[iv_col]
         dv_data = data[dv_col]
+        
+        is_normal_iv = self.check_normality_simple(iv_data, iv_col)
+        is_normal_dv = self.check_normality_simple(dv_data, dv_col)
         
         print("\n[가설검정]")
         print("-" * 40)
@@ -217,12 +155,76 @@ class TTest(StatisticalTest):
         # 결과 반환
         return TestResult(
             test_name=test_name,
-            test_stat=test_stat,
+            statistic=test_stat,
             p_value=p_value,
             effect_size=effect_size,
             effect_interpretation=effect_interpretation,
-            conclusion=conclusion
+            conclusion=conclusion,
+            metadata=None
         )
     
     def interpret(self, result: TestResult, alpha: float = 0.05):
         pass
+
+    def check_normality_simple(self, data: ArrayLike, col="데이터"):
+        """
+        데이터의 정규성을 검정하는 함수: t-test용
+
+        Parameters
+        ----------
+        data : array-like
+            정규성을 검정할 데이터 (NaN은 자동 제거)
+        name : str, default="데이터"
+            출력 시 표시될 데이터 이름
+
+        Returns
+        -------
+        bool
+            정규분포 가정 충족 여부
+            - True: 정규분포 가정 가능 (모수 검정)
+            - False: 정규분포 가정 위반 (비모수 검정)
+
+        검정 기준
+        ---------
+        - n < 30: Shapiro-Wilk 검정 (p > 0.05)
+        - 30 ≤ n < 100: 왜도/첨도 우선, 필요시 Shapiro-Wilk
+        - n ≥ 100: 왜도 기준 (|왜도| < 2, 중심극한정리)
+        """
+        # NaN 체크
+        if pd.isna(data).any():
+            print(f"⚠️ 경고: {col}에 NaN 값이 {pd.isna(data).sum()}개 포함됨")
+            data = data.dropna()
+            print(f"   → NaN 제거 후 n={len(data)}")
+
+        n = len(data)
+
+        print(f"\n[{col} 정규성 검정] n={n}")
+        print("-"*40)
+
+        # 왜도와 첨도
+        skew = stats.skew(data)
+        kurt = stats.kurtosis(data, fisher=True)
+        print(f"왜도(Skewness): {skew:.3f}")
+        print(f"첨도(Kurtosis): {kurt:.3f}")
+
+        # 표본 크기에 따른 판단
+        if n < 30:
+            stat, p = shapiro(data)
+            print(f"Shapiro-Wilk p-value: {p:.4f}")
+            is_normal = p > 0.05
+            reason = f"Shapiro p={'>' if is_normal else '≤'}0.05"
+        elif n < 100:
+            if abs(skew) < 1 and abs(kurt) < 2:
+                is_normal = True
+                reason = "|왜도|<1, |첨도|<2"
+            else:
+                stat, p = shapiro(data)
+                print(f"추가 Shapiro-Wilk p-value: {p:.4f}")
+                is_normal = p > 0.05
+                reason = f"Shapiro p={'>' if is_normal else '≤'}0.05"
+        else:
+            is_normal = abs(skew) < 2
+            reason = f"|왜도|{'<' if is_normal else '≥'}2 (중심극한정리)"
+
+        print(f"결과: {'✅ 정규분포 가정 충족' if is_normal else '❌ 정규분포 가정 위반'} ({reason})")
+        return is_normal
