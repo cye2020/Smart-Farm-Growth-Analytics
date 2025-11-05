@@ -9,7 +9,7 @@ from numpy.typing import ArrayLike
 
 # 통계 분석
 from scipy import stats
-from scipy.stats import shapiro, ttest_ind  
+from scipy.stats import shapiro, levene, ttest_ind  
 from scipy.stats import mannwhitneyu
 
 
@@ -52,7 +52,7 @@ class TTest(StatisticalTest):
     def __init__(self):
         pass
     
-    def execute(self, data: pd.DataFrame, iv_col: str, dv_col: str, alpha: float = 0.5, equal_var=True):
+    def execute(self, data: pd.DataFrame, iv_col: str, dv_col: str, alpha: float = 0.5):
         """
         두 그룹 간 평균 차이에 대한 가설검정을 수행하는 함수.
         (정규성에 따라 t-검정 또는 Mann-Whitney U 검정을 자동 선택)
@@ -64,12 +64,6 @@ class TTest(StatisticalTest):
             독립 변수 컬럼명
         dv_col : array-like
             종속 변수 컬럼명
-        is_normal_iv : bool
-            그룹 0의 정규성 충족 여부
-        is_normal_dv : bool
-            그룹 1의 정규성 충족 여부
-        equal_var : bool, optional
-            두 그룹의 분산이 같은지 여부 (default=True)
         alpha : float, optional
             유의수준 (default=0.05)
 
@@ -85,6 +79,7 @@ class TTest(StatisticalTest):
                 'conclusion': str
             }
         """
+        equal_var = self.check_homosecedasticity(data, iv_col, dv_col)
         
         iv_data = data[iv_col]
         dv_data = data[dv_col]
@@ -228,3 +223,11 @@ class TTest(StatisticalTest):
 
         print(f"결과: {'✅ 정규분포 가정 충족' if is_normal else '❌ 정규분포 가정 위반'} ({reason})")
         return is_normal
+    
+    def check_homosecedasticity(self, data, iv_col, dv_col):
+        print("\n[등분산성 검정]")
+        print("-"*40)
+        stat, p_levene = levene(data[iv_col], data[dv_col])
+        print(f"Levene's test p-value: {p_levene:.4f}")
+        equal_var = p_levene > 0.05
+        return equal_var
