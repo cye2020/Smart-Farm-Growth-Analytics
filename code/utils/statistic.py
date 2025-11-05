@@ -1,13 +1,21 @@
-# 표준 라이브러리
+# =========================================================
+# 통계 검정 클래스
+# ========================================================="
+
+
+# 1. 표준 라이브러리
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
-# 서드파티 라이브러리
+# 2. 서드파티 라이브러리
 import pandas as pd
 import numpy as np
 from numpy.typing import ArrayLike
 
-# 통계 분석
+# 2-1. 시각화 라이브러이
+import matplotlib.pyplot as plt
+
+# 2-2. 통계 분석
 from scipy import stats
 from scipy.stats import shapiro, levene, ttest_ind  
 from scipy.stats import mannwhitneyu, norm
@@ -36,11 +44,11 @@ class StatisticalTest(ABC):
     """
     
     @abstractmethod
-    def execute(self, data: pd.DataFrame, iv_col: str, dp_col: list, **kwargs):
+    def execute(self):
         pass
     
     @abstractmethod
-    def interpret(self, result):
+    def interpret(self):
         pass
 
 
@@ -52,18 +60,17 @@ class TTest(StatisticalTest):
     def __init__(self):
         pass
     
-    def execute(self, class0_data: pd.Series, class1_data: pd.Series, alpha: float = 0.5):
+    def execute(self, class0_data: pd.Series, class1_data: pd.Series, iv_col: str, dv_col: str, labels: list = [0, 1], alpha: float = 0.5):
         """
         두 그룹 간 평균 차이에 대한 가설검정을 수행하는 함수.
         (정규성에 따라 t-검정 또는 Mann-Whitney U 검정을 자동 선택)
 
         Parameters
         ----------
-        data: 원본 데이터
-        iv_col : array-like
-            독립 변수 컬럼명
-        dv_col : array-like
-            종속 변수 컬럼명
+        class0_data: pd.DataFrame
+            독립 변수의 값이 0인 데이터
+        class1_data: pd.DataFrame
+            독립 변수의 값이 1인 데이터
         alpha : float, optional
             유의수준 (default=0.05)
 
@@ -79,6 +86,9 @@ class TTest(StatisticalTest):
                 'conclusion': str
             }
         """
+        
+        self.plot(class0_data, class1_data, labels, iv_col, dv_col)
+        
         equal_var = self.check_homosecedasticity(class0_data, class1_data)
         
         is_normal_0 = self.check_normality_simple(class0_data)
@@ -247,3 +257,35 @@ class TTest(StatisticalTest):
         print(f"Levene's test p-value: {p_levene:.4f}")
         equal_var = p_levene > 0.05
         return equal_var
+    
+    def plot(self, class0_data, class1_data, labels, iv_col, dv_col):
+        fig, axes = plt.subplots(1, 3, figsize=(14, 5))
+
+        # 박스플롯
+        bp = axes[0].boxplot([class0_data, class1_data],
+                            labels=labels,
+                            patch_artist=True)
+        bp['boxes'][0].set_facecolor('lightblue')
+        bp['boxes'][1].set_facecolor('lightcoral')
+        axes[0].set_ylabel(dv_col)
+        axes[0].set_title(f'{dv_col} 분포')
+        axes[0].grid(True, alpha=0.3)
+
+        # 히스토그램
+        axes[1].hist(class0_data, bins=10, alpha=0.6, label=f'{iv_col} - {labels[0]}', 
+                    color='blue', density=True, edgecolor='black')
+        axes[1].hist(class1_data, bins=10, alpha=0.6, label=f'{iv_col} - {labels[1]}', 
+                    color='red', density=True, edgecolor='black')
+        axes[1].set_xlabel(dv_col)
+        axes[1].set_ylabel('밀도')
+        axes[1].set_title(f'{dv_col} 분포 비교')
+        axes[1].legend()
+        axes[1].grid(True, alpha=0.3)
+
+        # Q-Q plot (Class 0)
+        stats.probplot(class0_data, dist="norm", plot=axes[2])
+        axes[2].set_title(f'Q-Q Plot ({labels[0]})')
+        axes[2].grid(True, alpha=0.3)
+
+        plt.tight_layout()
+        plt.show()
