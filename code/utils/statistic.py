@@ -10,7 +10,7 @@ from numpy.typing import ArrayLike
 # 통계 분석
 from scipy import stats
 from scipy.stats import shapiro, levene, ttest_ind  
-from scipy.stats import mannwhitneyu
+from scipy.stats import mannwhitneyu, norm
 
 
 @dataclass
@@ -52,7 +52,7 @@ class TTest(StatisticalTest):
     def __init__(self):
         pass
     
-    def execute(self, data: pd.DataFrame, iv_col: str, dv_col: str, alpha: float = 0.5):
+    def execute(self, class0_data: pd.Series, class1_data: pd.Series, alpha: float = 0.5):
         """
         두 그룹 간 평균 차이에 대한 가설검정을 수행하는 함수.
         (정규성에 따라 t-검정 또는 Mann-Whitney U 검정을 자동 선택)
@@ -79,18 +79,15 @@ class TTest(StatisticalTest):
                 'conclusion': str
             }
         """
-        equal_var = self.check_homosecedasticity(data, iv_col, dv_col)
+        equal_var = self.check_homosecedasticity(class0_data, class1_data)
         
-        iv_data = data[iv_col]
-        dv_data = data[dv_col]
-        
-        is_normal_iv = self.check_normality_simple(iv_data, iv_col)
-        is_normal_dv = self.check_normality_simple(dv_data, dv_col)
+        is_normal_0 = self.check_normality_simple(class0_data)
+        is_normal_1 = self.check_normality_simple(class1_data)
         
         print("\n[가설검정]")
         print("-" * 40)
 
-        if is_normal_iv and is_normal_dv:
+        if is_normal_0 and is_normal_1:
             print("H₀: μ₀ = μ₁ (두 클래스의 평균이 같다)")
             print("H₁: μ₀ ≠ μ₁ (두 클래스의 평균이 다르다)")
         else:
@@ -100,16 +97,16 @@ class TTest(StatisticalTest):
         print(f"유의수준: α = {alpha}\n")
 
         # --- 검정 수행 ---
-        if is_normal_iv and is_normal_dv:
+        if is_normal_0 and is_normal_1:
             # 모수 검정
             test_name = "Student's t-test" if equal_var else "Welch's t-test"
-            t_stat, p_value = ttest_ind(iv_data, dv_data, equal_var=equal_var)
+            t_stat, p_value = ttest_ind(class0_data, class1_data, equal_var=equal_var)
             print(f"{test_name} 결과:")
             print(f"t = {t_stat:.4f}, p = {p_value:.4f}")
             
             # Cohen's d 계산
-            pooled_std = np.sqrt((iv_data.var() + dv_data.var()) / 2)
-            cohens_d = (iv_data.mean() - dv_data.mean()) / pooled_std
+            pooled_std = np.sqrt((class0_data.var() + class1_data.var()) / 2)
+            cohens_d = (class0_data.mean() - class1_data.mean()) / pooled_std
             abs_d = abs(cohens_d)
 
             if abs_d < 0.2:
@@ -130,13 +127,31 @@ class TTest(StatisticalTest):
         else:
             # 비모수 검정
             test_name = "Mann-Whitney U test"
-            u_stat, p_value = mannwhitneyu(iv_data, dv_data, alternative='two-sided')
+            u_stat, p_value = mannwhitneyu(class0_data, class1_data, alternative='two-sided')
             print(f"{test_name} 결과:")
             print(f"U = {u_stat:.4f}, p = {p_value:.4f}")
-
+            
+            # 총 샘플 크기 (N)
+            n0 = len(class0_data)
+            n1 = len(class1_data)
+            N = n0 + n1
+            
+            # 효과 크기 계산 (rank-biserial crrelation)
+            r_rb = (2 * u_stat) / (n0 * n1) - 1
+            abs_rb = abs(r_rb)
+            
+            if abs_rb < 0.1:
+                effect = "매우 작은 효과"
+            elif abs_rb < 0.3:
+                effect = "작은 효과"
+            elif abs_rb < 0.5:
+                effect = "중간 효과"
+            else:
+                effect = "큰 효과"
+            
             test_stat = u_stat
-            effect_size = None
-            effect_interpretation = None
+            effect_size = r_rb
+            effect_interpretation = effect
 
         # --- 결론 ---
         print("\n[결론]")
@@ -224,10 +239,11 @@ class TTest(StatisticalTest):
         print(f"결과: {'✅ 정규분포 가정 충족' if is_normal else '❌ 정규분포 가정 위반'} ({reason})")
         return is_normal
     
-    def check_homosecedasticity(self, data, iv_col, dv_col):
+    def check_homosecedasticity(self, class0_data, class1_data):
         print("\n[등분산성 검정]")
         print("-"*40)
-        stat, p_levene = levene(data[iv_col], data[dv_col])
+        stat, p_levene = levene(class0_data, class1_data)
+        print(p_levene)
         print(f"Levene's test p-value: {p_levene:.4f}")
         equal_var = p_levene > 0.05
         return equal_var
