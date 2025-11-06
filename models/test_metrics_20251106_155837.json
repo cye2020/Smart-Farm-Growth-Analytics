@@ -1,0 +1,23 @@
+{
+  "test_metrics": {
+    "F1-macro": 0.5532834745912699,
+    "PR-AUC": 0.28555055839573185,
+    "Recall": 0.140485312899106,
+    "Precision": 0.3942652329749104,
+    "F1": 0.2071563088512241,
+    "ROC-AUC": 0.35867217207466573
+  },
+  "confusion_matrix": {
+    "tn": 660,
+    "fp": 4038,
+    "fn": 1014,
+    "tp": 22586
+  },
+  "business_interpretation": {
+    "total_minority": 1674,
+    "detected_minority": 660,
+    "missed_minority": 1014,
+    "false_alarms": 4038
+  },
+  "timestamp": "20251106_155837"
+}
