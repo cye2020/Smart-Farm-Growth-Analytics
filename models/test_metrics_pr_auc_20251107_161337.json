@@ -1,0 +1,24 @@
+{
+  "test_metrics": {
+    "PR-AUC": 0.295345197632628,
+    "Recall": 0.1249467858663261,
+    "F2": 0.14562865932321128,
+    "Precision": 0.4309838472834068,
+    "F1": 0.19372937293729373,
+    "ROC-AUC": 0.6549328103917281
+  },
+  "confusion_matrix": {
+    "tn": 22825,
+    "fp": 775,
+    "fn": 4111,
+    "tp": 587
+  },
+  "business_interpretation": {
+    "total_minority": 4698,
+    "detected_minority": 587,
+    "missed_minority": 4111,
+    "recall_percentage": 12.49467858663261,
+    "false_alarms": 775
+  },
+  "timestamp": "20251107_161337"
+}
