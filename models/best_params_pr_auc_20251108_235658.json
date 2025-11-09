@@ -1,0 +1,26 @@
+{
+  "best_params": {
+    "model__colsample_bytree": 0.9272059063689972,
+    "model__learning_rate": 0.04373287624653545,
+    "model__max_depth": 5,
+    "model__min_child_samples": 13,
+    "model__min_child_weight": 0.0001,
+    "model__n_estimators": 976,
+    "model__num_leaves": 65,
+    "model__reg_alpha": 0.13470616689926074,
+    "model__reg_lambda": 0.12206276112388709,
+    "model__subsample": 0.6673164168691722
+  },
+  "best_pr_auc_score": 0.32982782272787164,
+  "optimization_target": "pr_auc",
+  "cv_folds": 5,
+  "n_iter": 150,
+  "timestamp": "20251108_235658",
+  "class_labels": {
+    "0": "일반가 (다수)",
+    "1": "가격미달 (소수)"
+  },
+  "minority_count": 3337,
+  "majority_count": 28406,
+  "scale_pos_weight": 8.512436320047946
+}
