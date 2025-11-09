@@ -1,0 +1,39 @@
+{
+  "timestamp": "20251109_181019",
+  "model": "XGBRegressor",
+  "optimization": "Optuna",
+  "n_trials": 300,
+  "best_cv_mse": 2042.3763981048899,
+  "train_metrics": {
+    "mse": 1665.8434453615348,
+    "rmse": 40.814745440361804,
+    "mae": 29.542947909177816,
+    "r2": 0.3310090969373656
+  },
+  "test_metrics": {
+    "mse": 2195.62096597608,
+    "rmse": 46.857453686431576,
+    "mae": 33.20265294262209,
+    "r2": 0.18872743760351363
+  },
+  "overfitting_ratio": -31.802359464791625,
+  "best_params": {
+    "max_depth": 6,
+    "min_child_weight": 1,
+    "gamma": 0.453458914589975,
+    "learning_rate": 0.012553339837564896,
+    "n_estimators": 700,
+    "subsample": 0.7355338067327305,
+    "colsample_bytree": 0.7034313414602196,
+    "colsample_bylevel": 0.7458663631547733,
+    "reg_alpha": 1.860558334997215e-07,
+    "reg_lambda": 1.075105262343795e-08
+  },
+  "training_info": {
+    "train_size": 28406,
+    "test_size": 7550,
+    "n_features": 7,
+    "early_stopping_rounds": 50,
+    "best_iteration": 698
+  }
+}

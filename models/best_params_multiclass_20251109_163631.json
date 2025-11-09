@@ -1,0 +1,35 @@
+{
+  "best_params": {
+    "model__colsample_bytree": 0.8328592919119889,
+    "model__learning_rate": 0.035643867225721,
+    "model__max_depth": 7,
+    "model__min_child_samples": 5,
+    "model__min_child_weight": 1e-05,
+    "model__n_estimators": 812,
+    "model__num_leaves": 67,
+    "model__reg_alpha": 0.4007685559414948,
+    "model__reg_lambda": 0.4797883221605167,
+    "model__subsample": 0.795141617570545
+  },
+  "best_f1_macro_score": 0.5316323536632714,
+  "optimization_target": "f1_macro",
+  "cv_folds": 5,
+  "n_iter": 300,
+  "timestamp": "20251109_163631",
+  "n_classes": 3,
+  "class_labels": {
+    "0": "A등급 (중간)",
+    "1": "B등급 (다수)",
+    "2": "C등급 (소수)"
+  },
+  "class_distribution": {
+    "0": 10587,
+    "1": 17819,
+    "2": 3337
+  },
+  "class_weights": {
+    "0": 0.9994332672145083,
+    "1": 0.5938043661260453,
+    "2": 3.170812106682649
+  }
+}
