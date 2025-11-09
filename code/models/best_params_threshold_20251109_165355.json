@@ -1,0 +1,202 @@
+{
+  "best_params": {
+    "iterations": 522,
+    "learning_rate": 0.04789844978000489,
+    "depth": 4,
+    "l2_leaf_reg": 6.8434339585126365,
+    "random_strength": 8.046278991050185,
+    "min_data_in_leaf": 33,
+    "max_bin": 201,
+    "subsample": 0.7982224185982683
+  },
+  "pareto_solutions": [
+    {
+      "trial_number": 7,
+      "precision": 0.21744522529971064,
+      "recall": 0.6159250585480094,
+      "f1": 0.32141765960090607,
+      "params": {
+        "iterations": 910,
+        "learning_rate": 0.2805983112509357,
+        "depth": 4,
+        "l2_leaf_reg": 3.075097007362855,
+        "random_strength": 0.056470910565386,
+        "min_data_in_leaf": 27,
+        "max_bin": 325,
+        "subsample": 0.5133643628048907
+      }
+    },
+    {
+      "trial_number": 17,
+      "precision": 0.22277904328018222,
+      "recall": 0.572599531615925,
+      "f1": 0.3207609051744964,
+      "params": {
+        "iterations": 170,
+        "learning_rate": 0.12205138085920332,
+        "depth": 7,
+        "l2_leaf_reg": 1.8324121991113906,
+        "random_strength": 5.749386164734641,
+        "min_data_in_leaf": 45,
+        "max_bin": 272,
+        "subsample": 0.6937067686178773
+      }
+    },
+    {
+      "trial_number": 40,
+      "precision": 0.24885095206828628,
+      "recall": 0.44379391100702575,
+      "f1": 0.31888935628547094,
+      "params": {
+        "iterations": 616,
+        "learning_rate": 0.2277439335616058,
+        "depth": 9,
+        "l2_leaf_reg": 7.645359186936462,
+        "random_strength": 8.120021602883861,
+        "min_data_in_leaf": 7,
+        "max_bin": 244,
+        "subsample": 0.931896444470671
+      }
+    },
+    {
+      "trial_number": 43,
+      "precision": 0.22343453510436434,
+      "recall": 0.5515222482435597,
+      "f1": 0.3180283591757072,
+      "params": {
+        "iterations": 548,
+        "learning_rate": 0.13533485272427787,
+        "depth": 4,
+        "l2_leaf_reg": 7.539276596712153,
+        "random_strength": 8.089734346279,
+        "min_data_in_leaf": 1,
+        "max_bin": 267,
+        "subsample": 0.9190936289723142
+      }
+    },
+    {
+      "trial_number": 48,
+      "precision": 0.2211077191452246,
+      "recall": 0.5936768149882904,
+      "f1": 0.3222116300843819,
+      "params": {
+        "iterations": 672,
+        "learning_rate": 0.012236730176919623,
+        "depth": 7,
+        "l2_leaf_reg": 9.851169679349132,
+        "random_strength": 1.0077866206466701,
+        "min_data_in_leaf": 24,
+        "max_bin": 300,
+        "subsample": 0.5781532849843146
+      }
+    },
+    {
+      "trial_number": 63,
+      "precision": 0.222271714922049,
+      "recall": 0.5843091334894613,
+      "f1": 0.322039367497989,
+      "params": {
+        "iterations": 242,
+        "learning_rate": 0.04077343051825804,
+        "depth": 9,
+        "l2_leaf_reg": 7.150000026221733,
+        "random_strength": 0.5936948045854396,
+        "min_data_in_leaf": 6,
+        "max_bin": 317,
+        "subsample": 0.7904147095859064
+      }
+    },
+    {
+      "trial_number": 65,
+      "precision": 0.243142144638404,
+      "recall": 0.4566744730679157,
+      "f1": 0.3173311635022548,
+      "params": {
+        "iterations": 358,
+        "learning_rate": 0.24242386976407757,
+        "depth": 9,
+        "l2_leaf_reg": 7.718925421866897,
+        "random_strength": 7.955894210831072,
+        "min_data_in_leaf": 34,
+        "max_bin": 343,
+        "subsample": 0.708391437509953
+      }
+    },
+    {
+      "trial_number": 72,
+      "precision": 0.23381294964028776,
+      "recall": 0.5327868852459017,
+      "f1": 0.324999999957605,
+      "params": {
+        "iterations": 522,
+        "learning_rate": 0.04789844978000489,
+        "depth": 4,
+        "l2_leaf_reg": 6.8434339585126365,
+        "random_strength": 8.046278991050185,
+        "min_data_in_leaf": 33,
+        "max_bin": 201,
+        "subsample": 0.7982224185982683
+      }
+    },
+    {
+      "trial_number": 80,
+      "precision": 0.24966974900924702,
+      "recall": 0.4426229508196721,
+      "f1": 0.31925675671064085,
+      "params": {
+        "iterations": 358,
+        "learning_rate": 0.19405188614727378,
+        "depth": 8,
+        "l2_leaf_reg": 8.866048299322955,
+        "random_strength": 7.955894210831072,
+        "min_data_in_leaf": 25,
+        "max_bin": 343,
+        "subsample": 0.708391437509953
+      }
+    },
+    {
+      "trial_number": 90,
+      "precision": 0.22094017094017093,
+      "recall": 0.6053864168618267,
+      "f1": 0.32373199745612646,
+      "params": {
+        "iterations": 153,
+        "learning_rate": 0.05390189679477432,
+        "depth": 9,
+        "l2_leaf_reg": 2.6656345535178634,
+        "random_strength": 0.5936948045854396,
+        "min_data_in_leaf": 16,
+        "max_bin": 214,
+        "subsample": 0.7904147095859064
+      }
+    }
+  ],
+  "best_f1_solution": {
+    "precision": 0.23381294964028776,
+    "recall": 0.5327868852459017,
+    "f1": 0.324999999957605,
+    "trial_number": 72
+  },
+  "optimal_threshold": 0.51,
+  "optimal_threshold_f1": 0.2683274021352313,
+  "n_trials": 100,
+  "n_pareto_solutions": 10,
+  "split_date": "2021-08-01",
+  "timestamp": "20251109_165355",
+  "categorical_features": [
+    "계절",
+    "정액코드분류",
+    "비유구분"
+  ],
+  "features": [
+    "전산차비유지속성",
+    "산차",
+    "농후사료급여량(연계)",
+    "공태일수_log",
+    "농장구분",
+    "비유단계",
+    "계절",
+    "정액코드분류"
+  ],
+  "target": "가격미달"
+}

@@ -1,0 +1,154 @@
+{
+  "best_params": {
+    "iterations": 183,
+    "learning_rate": 0.1575913375425871,
+    "depth": 8,
+    "l2_leaf_reg": 6.6357423693369455,
+    "random_strength": 2.163126790705052,
+    "min_data_in_leaf": 35,
+    "max_bin": 333,
+    "subsample": 0.7379748350943747
+  },
+  "pareto_solutions": [
+    {
+      "trial_number": 18,
+      "precision": 0.21936589545844046,
+      "recall": 0.5995316159250585,
+      "f1": 0.3212045168992954,
+      "params": {
+        "iterations": 183,
+        "learning_rate": 0.1575913375425871,
+        "depth": 8,
+        "l2_leaf_reg": 6.6357423693369455,
+        "random_strength": 2.163126790705052,
+        "min_data_in_leaf": 35,
+        "max_bin": 333,
+        "subsample": 0.7379748350943747
+      }
+    },
+    {
+      "trial_number": 34,
+      "precision": 0.2107371794871795,
+      "recall": 0.6159250585480094,
+      "f1": 0.314029850708281,
+      "params": {
+        "iterations": 407,
+        "learning_rate": 0.01171279204160598,
+        "depth": 9,
+        "l2_leaf_reg": 8.136208807180994,
+        "random_strength": 0.7071857896665279,
+        "min_data_in_leaf": 45,
+        "max_bin": 355,
+        "subsample": 0.5977963881011783
+      }
+    },
+    {
+      "trial_number": 35,
+      "precision": 0.1806797853309481,
+      "recall": 0.7096018735362998,
+      "f1": 0.2880228136558611,
+      "params": {
+        "iterations": 297,
+        "learning_rate": 0.020035583747859718,
+        "depth": 5,
+        "l2_leaf_reg": 7.724772595384437,
+        "random_strength": 4.036953502286165,
+        "min_data_in_leaf": 19,
+        "max_bin": 368,
+        "subsample": 0.9748443715186395
+      }
+    },
+    {
+      "trial_number": 43,
+      "precision": 0.22186046511627908,
+      "recall": 0.5585480093676815,
+      "f1": 0.3175765645398656,
+      "params": {
+        "iterations": 199,
+        "learning_rate": 0.2907451453917868,
+        "depth": 9,
+        "l2_leaf_reg": 4.7389949529493185,
+        "random_strength": 3.470783093546772,
+        "min_data_in_leaf": 1,
+        "max_bin": 235,
+        "subsample": 0.874174797907225
+      }
+    },
+    {
+      "trial_number": 64,
+      "precision": 0.21772151898734177,
+      "recall": 0.6042154566744731,
+      "f1": 0.320099255544182,
+      "params": {
+        "iterations": 297,
+        "learning_rate": 0.0931521960713092,
+        "depth": 5,
+        "l2_leaf_reg": 2.6407305365069753,
+        "random_strength": 1.210618269103264,
+        "min_data_in_leaf": 30,
+        "max_bin": 398,
+        "subsample": 0.9129996818467351
+      }
+    },
+    {
+      "trial_number": 68,
+      "precision": 0.21949078138718173,
+      "recall": 0.585480093676815,
+      "f1": 0.3192848020037586,
+      "params": {
+        "iterations": 316,
+        "learning_rate": 0.22854914249878128,
+        "depth": 5,
+        "l2_leaf_reg": 3.0303874067745498,
+        "random_strength": 3.0309908075445433,
+        "min_data_in_leaf": 10,
+        "max_bin": 212,
+        "subsample": 0.9417673721526469
+      }
+    },
+    {
+      "trial_number": 76,
+      "precision": 0.2071651090342679,
+      "recall": 0.6229508196721312,
+      "f1": 0.31092928108469464,
+      "params": {
+        "iterations": 593,
+        "learning_rate": 0.12696616368455121,
+        "depth": 5,
+        "l2_leaf_reg": 1.2648898480436581,
+        "random_strength": 2.073613735197255,
+        "min_data_in_leaf": 24,
+        "max_bin": 337,
+        "subsample": 0.500442656005051
+      }
+    }
+  ],
+  "best_f1_solution": {
+    "precision": 0.21936589545844046,
+    "recall": 0.5995316159250585,
+    "f1": 0.3212045168992954,
+    "trial_number": 18
+  },
+  "optimal_threshold": 0.57,
+  "optimal_threshold_f1": 0.26196319018404907,
+  "n_trials": 100,
+  "n_pareto_solutions": 7,
+  "split_date": "2021-08-01",
+  "timestamp": "20251109_163645",
+  "categorical_features": [
+    "계절",
+    "정액코드분류",
+    "비유구분"
+  ],
+  "features": [
+    "전산차비유지속성",
+    "산차",
+    "농후사료급여량(연계)",
+    "공태일수_log",
+    "농장구분",
+    "비유단계",
+    "계절",
+    "정액코드분류"
+  ],
+  "target": "가격미달"
+}
