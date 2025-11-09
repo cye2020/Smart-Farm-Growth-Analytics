@@ -1,0 +1,37 @@
+{
+  "best_params": {
+    "model__colsample_bytree": 0.7108708105022801,
+    "model__learning_rate": 0.07058603731171761,
+    "model__max_depth": 5,
+    "model__min_child_samples": 22,
+    "model__min_child_weight": 0.01,
+    "model__n_estimators": 1899,
+    "model__num_leaves": 40,
+    "model__reg_alpha": 0.4779863393256308,
+    "model__reg_lambda": 0.07578461104643691,
+    "model__scale_pos_weight": 5.086360931778535,
+    "model__subsample": 0.7348217921520748
+  },
+  "best_precision_score": 0.37527277800089287,
+  "optimization_target": "precision",
+  "cv_folds": 5,
+  "n_iter": 300,
+  "timestamp": "20251109_090643",
+  "class_labels": {
+    "0": "일반가 (다수)",
+    "1": "가격미달 (소수)"
+  },
+  "minority_count": 3337,
+  "majority_count": 28406,
+  "scale_pos_weight": 8.512436320047946,
+  "features": [
+    "전산차건유전유량",
+    "산차",
+    "농후사료급여량(연계)",
+    "공태일수",
+    "계절",
+    "농장구분",
+    "분만간격"
+  ],
+  "train_test_split": "2021-08-01"
+}
