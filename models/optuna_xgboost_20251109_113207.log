@@ -1,0 +1,55 @@
+2025-11-09 11:32:07,632 - INFO - 📁 저장 디렉토리: /home/dataiku/eric/Sparta/Smart-Farm-Growth-Analytics/models
+2025-11-09 11:32:07,633 - INFO - ⏰ 타임스탬프: 20251109_113207
+2025-11-09 11:32:07,633 - INFO - 🎮 사용 가능한 GPU: [0, 1, 2, 3]
+2025-11-09 11:32:07,633 - INFO - 📁 데이터 로딩 중...
+2025-11-09 11:32:07,639 - INFO -   훈련 데이터: (28406, 7)
+2025-11-09 11:32:07,639 - INFO -   테스트 데이터: (7550, 7)
+2025-11-09 11:32:07,640 - INFO - 🗄️  데이터베이스: sqlite:////home/dataiku/eric/Sparta/Smart-Farm-Growth-Analytics/models/optuna_xgboost_20251109_113207.db
+2025-11-09 11:32:07,641 - INFO - 📚 Study 이름: xgboost_regression_20251109_113207
+2025-11-09 11:32:08,035 - INFO - 
+============================================================
+2025-11-09 11:32:08,035 - INFO - 🚀 Optuna 최적화 시작!
+2025-11-09 11:32:08,036 - INFO -    목표 Trials: 300
+2025-11-09 11:32:08,036 - INFO -    멀티 GPU: 4개
+2025-11-09 11:32:08,036 - INFO - ============================================================
+
+2025-11-09 11:32:08,054 - INFO - Trial 0: GPU 0 사용
+2025-11-09 11:32:08,278 - ERROR - Trial 0 실패: 
+All the 5 fits failed.
+It is very likely that your model is misconfigured.
+You can try to debug the error by setting error_score='raise'.
+
+Below are more details about the failures:
+--------------------------------------------------------------------------------
+5 fits failed with the following error:
+Traceback (most recent call last):
+  File "/home/dataiku/eric/anaconda3/envs/smartfarm/lib/python3.10/site-packages/sklearn/model_selection/_validation.py", line 859, in _fit_and_score
+    estimator.fit(X_train, y_train, **fit_params)
+  File "/home/dataiku/eric/anaconda3/envs/smartfarm/lib/python3.10/site-packages/xgboost/core.py", line 774, in inner_f
+    return func(**kwargs)
+  File "/home/dataiku/eric/anaconda3/envs/smartfarm/lib/python3.10/site-packages/xgboost/sklearn.py", line 1365, in fit
+    self._Booster = train(
+  File "/home/dataiku/eric/anaconda3/envs/smartfarm/lib/python3.10/site-packages/xgboost/core.py", line 774, in inner_f
+    return func(**kwargs)
+  File "/home/dataiku/eric/anaconda3/envs/smartfarm/lib/python3.10/site-packages/xgboost/training.py", line 199, in train
+    bst.update(dtrain, iteration=i, fobj=obj)
+  File "/home/dataiku/eric/anaconda3/envs/smartfarm/lib/python3.10/site-packages/xgboost/core.py", line 2433, in update
+    _check_call(
+  File "/home/dataiku/eric/anaconda3/envs/smartfarm/lib/python3.10/site-packages/xgboost/core.py", line 323, in _check_call
+    raise XGBoostError(py_str(_LIB.XGBGetLastError()))
+xgboost.core.XGBoostError: [11:32:08] /workspace/src/context.cc:242: `gpu_id` has been removed since 3.1. Use `device` instead.
+Stack trace:
+  [bt] (0) /home/dataiku/eric/anaconda3/envs/smartfarm/lib/python3.10/site-packages/xgboost/lib/libxgboost.so(+0x2bdf8c) [0x700b33cbdf8c]
+  [bt] (1) /home/dataiku/eric/anaconda3/envs/smartfarm/lib/python3.10/site-packages/xgboost/lib/libxgboost.so(+0x4ac700) [0x700b33eac700]
+  [bt] (2) /home/dataiku/eric/anaconda3/envs/smartfarm/lib/python3.10/site-packages/xgboost/lib/libxgboost.so(+0x6ee464) [0x700b340ee464]
+  [bt] (3) /home/dataiku/eric/anaconda3/envs/smartfarm/lib/python3.10/site-packages/xgboost/lib/libxgboost.so(+0x6f4777) [0x700b340f4777]
+  [bt] (4) /home/dataiku/eric/anaconda3/envs/smartfarm/lib/python3.10/site-packages/xgboost/lib/libxgboost.so(XGBoosterUpdateOneIter+0x77) [0x700b33bcaa67]
+  [bt] (5) /home/dataiku/eric/anaconda3/envs/smartfarm/lib/python3.10/lib-dynload/../../libffi.so.8(+0xa052) [0x700cb6531052]
+  [bt] (6) /home/dataiku/eric/anaconda3/envs/smartfarm/lib/python3.10/lib-dynload/../../libffi.so.8(+0x8925) [0x700cb652f925]
+  [bt] (7) /home/dataiku/eric/anaconda3/envs/smartfarm/lib/python3.10/lib-dynload/../../libffi.so.8(ffi_call+0xde) [0x700cb653006e]
+  [bt] (8) /home/dataiku/eric/anaconda3/envs/smartfarm/lib/python3.10/lib-dynload/_ctypes.cpython-310-x86_64-linux-gnu.so(+0x91e7) [0x700cb4f461e7]
+
+
+
+2025-11-09 11:32:08,296 - INFO - 
+💾 중간 저장 (Trial 0)

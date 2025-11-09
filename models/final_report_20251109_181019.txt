@@ -1,0 +1,63 @@
+
+============================================================
+XGBoost + Optuna 최적화 최종 리포트
+============================================================
+
+📅 실행 시간: 20251109_181019
+📁 저장 위치: /home/dataiku/eric/Sparta/Smart-Farm-Growth-Analytics/models
+
+🎮 GPU 설정:
+  - 사용 GPU: [0, 1, 2, 3]
+  - GPU 개수: 4
+
+🔍 최적화 설정:
+  - Study 이름: xgboost_regression_20251109_181019
+  - 총 Trials: 300
+  - 완료된 Trials: 300
+
+🏆 최적 파라미터:
+{
+  "max_depth": 6,
+  "min_child_weight": 1,
+  "gamma": 0.453458914589975,
+  "learning_rate": 0.012553339837564896,
+  "n_estimators": 700,
+  "subsample": 0.7355338067327305,
+  "colsample_bytree": 0.7034313414602196,
+  "colsample_bylevel": 0.7458663631547733,
+  "reg_alpha": 1.860558334997215e-07,
+  "reg_lambda": 1.075105262343795e-08
+}
+
+📊 성능 지표:
+  
+  훈련 세트:
+    - MSE  : 1665.843445
+    - RMSE : 40.814745
+    - MAE  : 29.542948
+    - R²   : 0.331009
+  
+  테스트 세트:
+    - MSE  : 2195.620966
+    - RMSE : 46.857454
+    - MAE  : 33.202653
+    - R²   : 0.188727
+  
+  과적합 비율: -31.80%
+
+💾 저장된 파일:
+  - best_params_20251109_181019.json
+  - test_results_20251109_181019.json
+  - all_trials_20251109_181019.csv
+  - test_predictions_20251109_181019.csv
+  - feature_importance_20251109_181019.csv
+  - xgboost_final_model_20251109_181019.pkl
+  - /home/dataiku/eric/Sparta/Smart-Farm-Growth-Analytics/models/optuna_xgboost_20251109_181019.db
+  - optuna_xgboost_20251109_181019.log
+  - optuna_optimization_history_20251109_181019.html
+  - optuna_param_importances_20251109_181019.html
+  - optuna_contour_20251109_181019.html
+  - optuna_parallel_coordinate_20251109_181019.html
+  - optuna_slice_20251109_181019.html
+
+============================================================

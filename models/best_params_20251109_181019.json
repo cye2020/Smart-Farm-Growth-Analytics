@@ -1,0 +1,20 @@
+{
+  "timestamp": "20251109_181019",
+  "study_name": "xgboost_regression_20251109_181019",
+  "n_trials": 300,
+  "best_value": 2042.3763981048899,
+  "best_params": {
+    "max_depth": 6,
+    "min_child_weight": 1,
+    "gamma": 0.453458914589975,
+    "learning_rate": 0.012553339837564896,
+    "n_estimators": 700,
+    "subsample": 0.7355338067327305,
+    "colsample_bytree": 0.7034313414602196,
+    "colsample_bylevel": 0.7458663631547733,
+    "reg_alpha": 1.860558334997215e-07,
+    "reg_lambda": 1.075105262343795e-08
+  },
+  "cv_std": 403.00741148084035,
+  "device_used": "cuda:3"
+}
