@@ -1,6 +1,6 @@
 # 표준 라이브러리
 from IPython.display import display
-from typing import List
+from typing import List, Optional
 from itertools import combinations
 
 # 서드파티 라이브러리
@@ -59,25 +59,25 @@ def eda_duplicates(data: pd.DataFrame, columns: List[str], map: dict = None, ext
                 # print('-'*30)
                 print(data.duplicated(subset=cols).value_counts())
         
-def plot_one_feature(data: pd.DataFrame, feature, color, axes):
+def plot_one_feature(data: pd.DataFrame, feature, color, axes, bins: Optional[str|int] = 'auto'):
     sns.boxplot(data, y=feature, color=color, ax=axes[0])
     axes[0].set_title('Box Plot')
     axes[0].grid(True, alpha=0.3)
     stats.probplot(data[feature], dist="norm", plot=axes[1])
     axes[1].set_title('Q-Q Plot')
     axes[1].grid(True, alpha=0.3)
-    sns.histplot(data, x=feature, color=color, ax=axes[2])
+    sns.histplot(data, x=feature, color=color, ax=axes[2], bins=bins)
     axes[2].set_title('히스토그램')
     axes[2].grid(True, alpha=0.3)
 
-def plot_features(data: pd.DataFrame, features, colors):
+def plot_features(data: pd.DataFrame, features, colors, bins: Optional[str|int] = 'auto'):
     n = len(features)
     fig, axes = plt.subplots(n, 3, figsize=(9, 3*n))
     
     for i in range(n):
         feature, color = features[i], colors[i]
         ax = axes if n == 1 else axes[i]
-        plot_one_feature(data, feature, color, ax)
+        plot_one_feature(data, feature, color, ax, bins)
 
     plt.tight_layout()
     plt.show()
