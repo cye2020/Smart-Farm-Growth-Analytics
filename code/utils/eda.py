@@ -1,10 +1,10 @@
 # 표준 라이브러리
-from IPython.display import display
 from typing import List, Optional
 from itertools import combinations
 
 # 서드파티 라이브러리
 import pandas as pd
+from IPython.display import display
 import missingno as msno
 import matplotlib.pyplot as plt
 from scipy import stats
