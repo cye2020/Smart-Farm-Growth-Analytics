@@ -5,6 +5,7 @@ CODE_DIR = PROJECT_DIR / 'code'
 DATA_DIR = PROJECT_DIR / 'data'
 MODEL_DIR = PROJECT_DIR / 'models'
 REPORT_DIR = PROJECT_DIR / 'reports'
+FONT_DIR = PROJECT_DIR / 'font'
 
 growth_map = {
     "measDate": "측정일",
