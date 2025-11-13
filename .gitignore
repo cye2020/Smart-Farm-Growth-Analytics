@@ -3,4 +3,10 @@ data/interim/*
 *.pyc
 __pycache__/
 .DS_Store
+<<<<<<< HEAD
 temp*
+=======
+*.csv
+temp*
+tableau/*
+>>>>>>> origin/yun

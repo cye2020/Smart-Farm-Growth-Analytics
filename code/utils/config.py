@@ -5,7 +5,10 @@ CODE_DIR = PROJECT_DIR / 'code'
 DATA_DIR = PROJECT_DIR / 'data'
 MODEL_DIR = PROJECT_DIR / 'models'
 REPORT_DIR = PROJECT_DIR / 'reports'
+<<<<<<< HEAD
 FONT_DIR = PROJECT_DIR / 'font'
+=======
+>>>>>>> origin/yun
 
 growth_map = {
     "measDate": "측정일",

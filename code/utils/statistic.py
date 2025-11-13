@@ -84,6 +84,7 @@ class TTest(StatisticalTest):
         self.test_name = 't-검정'
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     def execute(self, class0_data: pd.Series, class1_data: pd.Series, iv_col: str, dv_col: str, labels: list = [0, 1], alpha: float = 0.05):
 =======
     def execute_all(self, data: pd.DataFrame, iv_col: str, dv_cols: List[str], labels: list = [0, 1], alpha: float = 0.05):
@@ -95,6 +96,9 @@ class TTest(StatisticalTest):
     
     def execute(self, data: pd.DataFrame, iv_col: str, dv_col: str, labels: list = [0, 1], alpha: float = 0.05):
 >>>>>>> 81596027ca4ecc50e6b04b6b20e24e9d47281502
+=======
+    def execute(self, class0_data: pd.Series, class1_data: pd.Series, iv_col: str, dv_col: str, labels: list = [0, 1], alpha: float = 0.5):
+>>>>>>> origin/yun
         """
         두 그룹 간 평균 차이에 대한 가설검정을 수행하는 함수.
         (정규성에 따라 t-검정 또는 Mann-Whitney U 검정을 자동 선택)

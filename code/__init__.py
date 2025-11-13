@@ -1,4 +1,4 @@
-from .utils import PROJECT_DIR, CODE_DIR, DATA_DIR, MODEL_DIR, REPORT_DIR, FONT_DIR, \
+from .utils import PROJECT_DIR, CODE_DIR, DATA_DIR, MODEL_DIR, REPORT_DIR, \
     growth_map, \
     eda_missing_data, eda_duplicates, plot_features, \
     TTest, Chi2Test
